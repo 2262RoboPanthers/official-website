@@ -1,7 +1,7 @@
 let lastScrollPosition = 0; // Tracks the last scroll position
 const slideInElements = document.querySelectorAll('.slide-in');
 
-// Elements slide in
+// Elements slide in when page loads
 window.addEventListener('load', () => {
     slideInElements.forEach(el => {
         el.classList.add('slide-from-bottom');
@@ -39,8 +39,22 @@ function handleScroll() {
     lastScrollPosition = currentScrollPosition;
 }
 
-// Run on scroll and when the page loads
-window.addEventListener('scroll', handleScroll);
+// Throttle function for better performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Run on scroll and when the page loads with throttling for performance
+window.addEventListener('scroll', throttle(handleScroll, 16)); // ~60fps
 handleScroll();
 
 // Load image background
@@ -50,11 +64,13 @@ window.addEventListener('load', function() {
     spacer.style.backgroundPosition = `center ${offset * -0.1}px`; // Set initial background position based on scroll
 });
   
-  window.addEventListener('scroll', function () {
+window.addEventListener('scroll', throttle(function () {
     const spacer = document.querySelector('.spacer');
-    let offset = window.scrollY; // Get current scroll position
-    spacer.style.backgroundPosition = `center ${offset * -0.1}px`; // Apply parallax effect
-});
+    if (spacer) {
+        let offset = window.scrollY; // Get current scroll position
+        spacer.style.backgroundPosition = `center ${offset * -0.1}px`; // Apply parallax effect
+    }
+}, 16));
   
 window.addEventListener('load', function() {
     const banner = document.querySelector('.banner');
@@ -62,11 +78,13 @@ window.addEventListener('load', function() {
     banner.style.backgroundPosition = `center ${offset * -0.1}px`; // Set initial background position based on scroll
 });
   
-  window.addEventListener('scroll', function () {
+window.addEventListener('scroll', throttle(function () {
     const banner = document.querySelector('.banner');
-    let offset = window.scrollY; // Get current scroll position
-    banner.style.backgroundPosition = `center ${offset * -0.1}px`; // Apply parallax effect
-});
+    if (banner) {
+        let offset = window.scrollY; // Get current scroll position
+        banner.style.backgroundPosition = `center ${offset * -0.1}px`; // Apply parallax effect
+    }
+}, 16));
 
 // Toggle the menu's active state
 function toggleMenu() {
@@ -100,43 +118,95 @@ function checkLinksVisibility() {
 }
 
 // Add scroll event listener to check visibility of the links when scrolling
-window.addEventListener('scroll', checkLinksVisibility);
+window.addEventListener('scroll', throttle(checkLinksVisibility, 100));
 
- // Countdown
- function updateCountdown() {
-    const targetDate = new Date('January 10, 2026 00:00:00').getTime(); // Target date in milliseconds
-    const now = new Date().getTime(); // Current time in milliseconds
-    const timeDifference = targetDate - now; // Difference in milliseconds
+// Countdown configuration
+const countdownTimerElement = document.getElementById('countdown-timer');
+const countdownTarget = new Date('2026-01-10T00:00:00-05:00').getTime();
+let timerInterval;
 
-    if (timeDifference <= 0) {
-        document.getElementById("countdown-timer").innerHTML = "Event in Progress!";
-        clearInterval(timerInterval);
+function ensureCountdownStructure() {
+    if (!countdownTimerElement) {
+        return null;
+    }
+
+    let daysElement = document.getElementById('days');
+    let hoursElement = document.getElementById('hours');
+    let minutesElement = document.getElementById('minutes');
+    let secondsElement = document.getElementById('seconds');
+
+    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        countdownTimerElement.innerHTML = `
+          <span id="days">0 Days</span> <em>|</em> 
+          <span id="hours">00</span> :
+          <span id="minutes">00</span> :
+          <span id="seconds">00</span>
+        `;
+
+        daysElement = document.getElementById('days');
+        hoursElement = document.getElementById('hours');
+        minutesElement = document.getElementById('minutes');
+        secondsElement = document.getElementById('seconds');
+    }
+
+    return {
+        daysElement,
+        hoursElement,
+        minutesElement,
+        secondsElement
+    };
+}
+
+function updateCountdown() {
+    if (!countdownTimerElement || Number.isNaN(countdownTarget)) {
         return;
     }
 
-    // Time calculations
+    const now = Date.now();
+    const timeDifference = countdownTarget - now;
+
+    if (!Number.isFinite(timeDifference)) {
+        countdownTimerElement.textContent = 'Countdown unavailable';
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+        return;
+    }
+
+    if (timeDifference <= 0) {
+        countdownTimerElement.textContent = 'Event in Progress!';
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+        return;
+    }
+
+    const timeParts = ensureCountdownStructure();
+    if (!timeParts) {
+        return;
+    }
+
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    // Pad numbers with leading zeros
     const paddedHours = hours.toString().padStart(2, '0');
     const paddedMinutes = minutes.toString().padStart(2, '0');
     const paddedSeconds = seconds.toString().padStart(2, '0');
+    const dayLabel = days === 1 ? 'Day' : 'Days';
 
-    // Adjust "day" vs "days"
-    const dayLabel = days === 1 ? "Day" : "Days";
-
-    // Update HTML
-    document.getElementById('days').textContent = `${days} ${dayLabel}`;
-    document.getElementById('hours').textContent = paddedHours;
-    document.getElementById('minutes').textContent = paddedMinutes;
-    document.getElementById('seconds').textContent = paddedSeconds;
+    timeParts.daysElement.textContent = `${days} ${dayLabel}`;
+    timeParts.hoursElement.textContent = paddedHours;
+    timeParts.minutesElement.textContent = paddedMinutes;
+    timeParts.secondsElement.textContent = paddedSeconds;
 }
 
-// Update every second
-const timerInterval = setInterval(updateCountdown, 1000);
+function startCountdown() {
+    updateCountdown();
+    timerInterval = setInterval(updateCountdown, 1000);
+}
 
-// Initial call to avoid delay
-updateCountdown();
+if (countdownTimerElement) {
+    startCountdown();
+}

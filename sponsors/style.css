@@ -6,6 +6,10 @@
     --red: #B32424;
     --red-fade: #661414;
     --white: #FFF;
+    --platinum: #E5E4E2;
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
 
     --gap: clamp(12px, 1vw, 1000px);
 }
@@ -179,8 +183,6 @@ body {
 .nav-item:hover {
     color: var(--red);
 }
-
-/* Removed duplicate - moved to navbar section */
 
 .nav-menu:hover {
     filter: drop-shadow(0 0 1vh rgba(255, 255, 255, 0.75));
@@ -398,10 +400,131 @@ body {
     text-indent: 2em;
 }
 
+/* Sponsors Grid Styles */
+.sponsors-grid {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) * 3);
+    width: 90vw;
+    max-width: 1200px;
+    padding: calc(var(--gap) * 2);
+}
+
+.sponsor-tier {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: calc(var(--gap) * 2);
+    box-shadow: 0 0 2vh rgba(0, 0, 0, 0.5);
+}
+
+.tier-title {
+    color: var(--light-gray);
+    font-family: "Roadrunners", serif;
+    font-size: clamp(20px, 3vw, 40px);
+    font-style: italic;
+    margin: 0 0 calc(var(--gap) * 2) 0;
+    text-align: center;
+}
+
+.platinum .tier-title {
+    color: var(--platinum);
+    text-shadow: 0 0 1vh rgba(229, 228, 226, 0.5);
+}
+
+.gold .tier-title {
+    color: var(--gold);
+    text-shadow: 0 0 1vh rgba(255, 215, 0, 0.5);
+}
+
+.silver .tier-title {
+    color: var(--silver);
+    text-shadow: 0 0 1vh rgba(192, 192, 192, 0.5);
+}
+
+.bronze .tier-title {
+    color: var(--bronze);
+    text-shadow: 0 0 1vh rgba(205, 127, 50, 0.5);
+}
+
+.sponsor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--gap) * 2);
+}
+
+.sponsor-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: calc(var(--gap) * 2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 250px;
+}
+
+.sponsor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 3vh rgba(179, 36, 36, 0.3);
+}
+
+.sponsor-logo {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: calc(var(--gap) * 1.5);
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: var(--gap);
+}
+
+.sponsor-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sponsor-logo.placeholder {
+    background-color: rgba(102, 102, 102, 0.3);
+    border: 2px dashed var(--medium-gray);
+    color: var(--medium-gray);
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sponsor-info h4 {
+    color: var(--light-gray);
+    font-family: "Raleway", sans-serif;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 600;
+    margin: 0 0 calc(var(--gap)) 0;
+}
+
+.sponsor-info p {
+    color: var(--light-gray);
+    font-family: "Raleway", sans-serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Sponsorship Info Section */
+.sponsorship-info {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    padding: calc(var(--gap) * 2);
+}
+
 .quote {
     align-items: center;
     background-attachment: absolute;
-    background-image: url('/media/about-frc/quoteBackground.jpg');
+    background-image: url('/media/backgrounds/grayscaleBackground.jpg');
     background-position: center center;
     background-size: cover;
     display: flex;
@@ -414,11 +537,43 @@ body {
     width: 100%;
 }
 
-.quote img {
-    border-radius: 15px;
-    filter: drop-shadow(0 0 5vh rgba(30, 30, 30, 1));
-    height: auto;
-    width: 80vw;
+.quote-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: calc(var(--gap) * 3);
+    text-align: center;
+    max-width: 800px;
+    backdrop-filter: blur(10px);
+}
+
+.quote-content blockquote {
+    color: var(--light-gray);
+    font-family: "Raleway", sans-serif;
+    font-size: clamp(18px, 2.5vw, 32px);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 calc(var(--gap) * 2) 0;
+    quotes: """ """ "'" "'";
+}
+
+.quote-content blockquote:before {
+    content: open-quote;
+    color: var(--red);
+    font-size: 1.5em;
+}
+
+.quote-content blockquote:after {
+    content: close-quote;
+    color: var(--red);
+    font-size: 1.5em;
+}
+
+.quote-content cite {
+    color: var(--medium-gray);
+    font-family: "Raleway", sans-serif;
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-style: normal;
+    font-weight: 600;
 }
 
 .vertical-text-background {
@@ -436,7 +591,7 @@ body {
 
 .button {
     align-items: center;
-    background-color: #009dd8;
+    background-color: var(--red);
     border-radius: 15px;
     box-shadow: 0 0 1vw rgba(0, 0, 0, 0.5);
     color: var(--light-gray);
@@ -458,93 +613,16 @@ body {
 .button img {
     height: clamp(20px, 5vw, 50px);
     width: auto;
+    filter: drop-shadow(0 0 0.5vh rgba(0, 0, 0, 0.5));
 }
   
 .button:hover {
-    background-color: #0564b3;
+    background-color: var(--red-fade);
 }
 
 .button p {
     margin: 0;
     padding: 0;
-}
-
-.countdown-container {
-    align-items: center;
-    display: flex;
-    height: auto;
-    justify-content: center;
-    margin: 0;
-    overflow: hidden;
-    padding: calc(var(--gap) * 8);
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-
-.countdown-container video {
-    height: 100%;
-    left: 0;
-    object-fit: cover;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.countdown {
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 0 0 5vh var(--black);
-    display: flex;
-    flex-direction: row;
-    gap: var(--gap);
-    height: auto;
-    justify-content: space-between;
-    margin: 0;
-    padding: var(--gap);
-    position: relative;
-    width: 80vw;
-}
-
-.countdown-logo {
-    border-radius: 15px;
-}
-  
-.countdown-logo img:hover {
-    filter: drop-shadow(0 0 1vh rgba(255, 255, 255, 0.5));
-}
-
-.countdown-logo img {
-    height: auto;
-    transition: filter 0.3s ease;
-    width: 15vw;
-}
-
-.countdown-text {
-    font-family: "Raleway", sans-serif;
-    font-size: clamp(15px, 2vw, 40px);
-    font-weight: 400;
-    height: auto;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100%;
-}
-
-#countdown-timer {
-    color: var(--white);
-    font-family: "Raleway", sans-serif;
-    font-size: clamp(20px, 4vw, 160px);
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    text-shadow: 0 0 0.5vw rgba(255, 255, 255, 0.5);
 }
 
 footer {
@@ -656,15 +734,42 @@ footer {
         margin: 0;
         padding: 0;
     }
+
+    .sponsor-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .sponsors-grid {
+        width: 95vw;
+        padding: var(--gap);
+    }
+
+    .external-links {
+        flex-direction: column;
+        gap: var(--gap);
+    }
 }
 
 @media (max-width: 640px) {
-    .countdown {
+    .page {
         flex-direction: column;
+        gap: calc(var(--gap) * 2);
     }
 
-    .countdown-logo img {
-        height: auto;
-        width: 20vh;
+    .img-container {
+        width: 40vw;
+    }
+
+    .img-container .banner-logo {
+        width: 40vw;
+    }
+
+    .sponsor-card {
+        min-height: 200px;
+    }
+
+    .sponsor-logo {
+        width: 100px;
+        height: 100px;
     }
 }

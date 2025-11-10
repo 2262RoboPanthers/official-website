@@ -74,12 +74,19 @@ window.addEventListener('scroll', throttle(function () {
     }
 }, 16));
   
+window.addEventListener('load', function() {
+    const banner = document.querySelector('.banner');
+    if (banner) {
+        let offset = window.scrollY; // Get the current scroll position
+        banner.style.backgroundPosition = `center ${offset * -0.1}px`; // Set initial background position based on scroll
+    }
+});
+  
 window.addEventListener('scroll', throttle(function () {
-    const video = document.getElementById('background-video');
-    if (video) {
-        const scrollOffset = window.scrollY;
-        // Apply parallax effect
-        video.style.transform = `translate(-50%, calc(-50% + ${scrollOffset * -0.1}px))`;
+    const banner = document.querySelector('.banner');
+    if (banner) {
+        let offset = window.scrollY; // Get current scroll position
+        banner.style.backgroundPosition = `center ${offset * -0.1}px`; // Apply parallax effect
     }
 }, 16));
 
@@ -117,98 +124,43 @@ function checkLinksVisibility() {
 // Add scroll event listener to check visibility of the links when scrolling
 window.addEventListener('scroll', throttle(checkLinksVisibility, 100));
 
-// Countdown configuration
-const countdownTimerElement = document.getElementById('countdown-timer');
-const countdownTarget = new Date('2026-01-10T00:00:00-05:00').getTime();
-let timerInterval;
+// Sponsor card hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const sponsorCards = document.querySelectorAll('.sponsor-card');
+    
+    sponsorCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
 
-function ensureCountdownStructure() {
-    if (!countdownTimerElement) {
-        return null;
-    }
+// Add intersection observer for better performance on sponsor cards
+if ('IntersectionObserver' in window) {
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
 
-    let daysElement = document.getElementById('days');
-    let hoursElement = document.getElementById('hours');
-    let minutesElement = document.getElementById('minutes');
-    let secondsElement = document.getElementById('seconds');
-
-    // Rebuild the markup if the spans are missing (e.g., after showing the event message)
-    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
-        countdownTimerElement.innerHTML = `
-          <span id="days">0 Days</span> <em>|</em> 
-          <span id="hours">00</span> :
-          <span id="minutes">00</span> :
-          <span id="seconds">00</span>
-        `;
-
-        daysElement = document.getElementById('days');
-        hoursElement = document.getElementById('hours');
-        minutesElement = document.getElementById('minutes');
-        secondsElement = document.getElementById('seconds');
-    }
-
-    return {
-        daysElement,
-        hoursElement,
-        minutesElement,
-        secondsElement
-    };
-}
-
-function updateCountdown() {
-    if (!countdownTimerElement || Number.isNaN(countdownTarget)) {
-        return;
-    }
-
-    const now = Date.now();
-    const timeDifference = countdownTarget - now;
-
-    if (!Number.isFinite(timeDifference)) {
-        countdownTimerElement.textContent = 'Countdown unavailable';
-        if (timerInterval) {
-            clearInterval(timerInterval);
-        }
-        return;
-    }
-
-    const timeParts = ensureCountdownStructure();
-    if (!timeParts) {
-        return;
-    }
-
-    if (timeDifference <= 0) {
-        // Show zeros when countdown reaches zero
-        timeParts.daysElement.textContent = '0 Days';
-        timeParts.hoursElement.textContent = '00';
-        timeParts.minutesElement.textContent = '00';
-        timeParts.secondsElement.textContent = '00';
-        if (timerInterval) {
-            clearInterval(timerInterval);
-        }
-        return;
-    }
-
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    const paddedHours = hours.toString().padStart(2, '0');
-    const paddedMinutes = minutes.toString().padStart(2, '0');
-    const paddedSeconds = seconds.toString().padStart(2, '0');
-    const dayLabel = days === 1 ? 'Day' : 'Days';
-
-    timeParts.daysElement.textContent = `${days} ${dayLabel}`;
-    timeParts.hoursElement.textContent = paddedHours;
-    timeParts.minutesElement.textContent = paddedMinutes;
-    timeParts.secondsElement.textContent = paddedSeconds;
-}
-
-function startCountdown() {
-    updateCountdown();
-    timerInterval = setInterval(updateCountdown, 1000);
-}
-
-if (countdownTimerElement) {
-    startCountdown();
+    // Observe all sponsor cards
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.sponsor-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            cardObserver.observe(card);
+        });
+    });
 }
