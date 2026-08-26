@@ -1,69 +1,152 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Countdown from '@/components/Countdown';
+import SlideIn from '@/components/SlideIn';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="w-full bg-[var(--dark-gray)] text-[var(--light-gray)]">
+      <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center z-0 opacity-40 filter saturate-[0.25]"
+          style={{ backgroundImage: "url('/backgrounds/grayscale-background.jpg')" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 max-w-6xl w-full mb-12">
+          <img 
+            src="/icons/logo.svg" 
+            className="h-36 sm:h-48 md:h-64 lg:h-72 w-auto object-contain drop-shadow-[0_0_1vw_rgba(0,0,0,0.8)]" 
+            alt="Holliston RoboPanthers Logo" 
+          />
+
+          <img 
+            src="/icons/logo-text.svg" 
+            className="h-20 sm:h-28 md:h-36 lg:h-44 w-auto object-contain drop-shadow-[0_0_1vw_rgba(0,0,0,0.8)]" 
+            alt="Holliston RoboPanthers" 
+          />
+
+          <img 
+            src="/icons/logo-number.svg" 
+            className="h-24 sm:h-32 md:h-40 lg:h-48 w-auto object-contain drop-shadow-[0_0_1vw_rgba(0,0,0,0.8)]" 
+            alt="2262" 
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <p className="relative z-10 text-[var(--light-gray)] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed tracking-wide drop-shadow-[0_0_1vw_rgba(0,0,0,1)]">
+          Welcome to the <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">official team page</em> of Holliston Robotics.<br />
+          Est. 2007
+        </p>
+      </section>
+
+      <section className="w-full min-h-screen pt-16 pb-0 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto flex flex-col gap-16">
+        <div className="w-full">
+          <SlideIn direction="up" className="flex flex-col gap-8 w-full">
+            <div className="flex items-center justify-start gap-4 sm:gap-6 w-full">
+              <div className="w-16 sm:w-20 md:w-24 min-w-[60px] flex items-center">
+                <img 
+                  src="/elements/arrows.svg" 
+                  className="w-full h-auto drop-shadow-[0_0_0.2vw_rgba(102,102,102,0.5)]" 
+                  alt="arrows" 
+                />
+              </div>
+              
+              <div className="relative flex-1">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide italic font-['Roadrunners'] bg-gradient-to-r from-[var(--red-fade)] to-[var(--red)] bg-clip-text text-transparent drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)] pb-2 pr-4 inline-block">
+                  Who We Are
+                </h2>
+                <div className="w-full h-[3px] bg-[var(--medium-gray)]" />
+              </div>
+            </div>
+            
+            <p className="text-[var(--light-gray)] text-base sm:text-lg md:text-xl leading-loose text-left font-['Raleway'] w-full">
+              The <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">Holliston RoboPanthers 2262</em> is a student-run, student-funded robotics team that is organized by students with the supervision of an adult mentor and advisor in <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">Holliston, MA</em>. We are about twenty-five members strong, and we participate in the <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">FIRST® Robotics Competition, FRC</em> as well as interact with our community by going to school events and by hosting free services such as car washes. Our goal is to get members of our community to develop a passion for <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">STEM</em>.
+            </p>
+          </SlideIn>
         </div>
-      </main>
-    </div>
+
+        <div className="w-full">
+          <div className="flex flex-col gap-6 w-full">
+            <SlideIn direction="up" delay={0.1} className="w-full">
+              <Link
+                href="/about-frc"
+                title="About FRC"
+                className="group relative flex h-16 sm:h-20 md:h-24 w-full items-center justify-start rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
+              >
+                <div 
+                  className="absolute inset-0 bg-cover bg-center saturate-[0.25] transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
+                  style={{ backgroundImage: "url('/images/frc.jpg')" }}
+                />
+                <div className="relative z-10 h-full flex items-center bg-black/50 backdrop-blur-md px-6 sm:px-10">
+                  <p className="font-['Raleway'] text-lg sm:text-xl md:text-2xl font-medium text-[var(--light-gray)] group-hover:text-[var(--red)] transition-colors duration-300 flex items-center gap-2">
+                    <span className="text-xs sm:text-sm md:text-base">▶</span> What is FRC?
+                  </p>
+                </div>
+              </Link>
+            </SlideIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+              <SlideIn direction="up" delay={0.2} className="w-full">
+                <Link
+                  href="/about-us"
+                  title="About Us"
+                  className="group relative flex h-64 sm:h-80 md:h-[400px] w-full items-center justify-center rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
+                >
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center saturate-[0.25] transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
+                    style={{ backgroundImage: "url('/images/about.jpg')" }}
+                  />
+                  <div className="relative z-10 w-full bg-black/50 backdrop-blur-md px-6 py-4 text-center">
+                    <p className="font-['Raleway'] text-xl sm:text-2xl md:text-3xl font-medium text-[var(--light-gray)] group-hover:text-[var(--red)] transition-colors duration-300 inline-flex items-center gap-2">
+                      <span className="text-sm sm:text-base md:text-lg">▶</span> About Us
+                    </p>
+                  </div>
+                </Link>
+              </SlideIn>
+
+              <SlideIn direction="up" delay={0.3} className="w-full">
+                <Link
+                  href="/sponsors"
+                  title="Sponsors"
+                  className="group relative flex h-64 sm:h-80 md:h-[400px] w-full items-center justify-center rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
+                >
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center saturate-[0.25] transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
+                    style={{ backgroundImage: "url('/images/sponsors.jpg')" }}
+                  />
+                  <div className="relative z-10 w-full bg-black/50 backdrop-blur-md px-6 py-4 text-center">
+                    <p className="font-['Raleway'] text-xl sm:text-2xl md:text-3xl font-medium text-[var(--light-gray)] group-hover:text-[var(--red)] transition-colors duration-300 inline-flex items-center gap-2">
+                      <span className="text-sm sm:text-base md:text-lg">▶</span> Sponsors
+                    </p>
+                  </div>
+                </Link>
+              </SlideIn>
+
+              <SlideIn direction="up" delay={0.4} className="w-full">
+                <Link
+                  href="/get-involved"
+                  title="Resources"
+                  className="group relative flex h-64 sm:h-80 md:h-[400px] w-full items-center justify-center rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
+                >
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center saturate-[0.25] transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
+                    style={{ backgroundImage: "url('/images/resources.jpg')" }}
+                  />
+                  <div className="relative z-10 w-full bg-black/50 backdrop-blur-md px-6 py-4 text-center">
+                    <p className="font-['Raleway'] text-xl sm:text-2xl md:text-3xl font-medium text-[var(--light-gray)] group-hover:text-[var(--red)] transition-colors duration-300 inline-flex items-center gap-2">
+                      <span className="text-sm sm:text-base md:text-lg">▶</span> Resources
+                    </p>
+                  </div>
+                </Link>
+              </SlideIn>
+            </div>
+          </div>
+        </div>
+        
+        <div className="w-full">
+          <SlideIn direction="up">
+            <Countdown />
+          </SlideIn>
+        </div>
+      </section>
+    </main>
   );
 }
