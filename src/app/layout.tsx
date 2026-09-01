@@ -8,7 +8,7 @@ const raleway = Raleway({
   subsets: ['latin'],
   variable: '--font-raleway',
   display: 'swap',
-});
+}); 
 
 export const metadata: Metadata = {
   title: 'Holliston Robotics - 2262 RoboPanthers',
