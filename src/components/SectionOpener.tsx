@@ -34,7 +34,7 @@ export default function OpeningBanner({
   {/* Red Stroke Layer (Bottom) */}
   <span
     aria-hidden="true"
-    className="col-start-1 row-start-1 text-transparent [-webkit-text-stroke:0.2em_#ef4444]"
+    className="col-start-1 row-start-1 text-transparent [-webkit-text-stroke:0.2em_#b32424]"
   >
     {title}
   </span>
