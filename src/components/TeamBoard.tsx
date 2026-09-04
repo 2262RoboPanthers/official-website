@@ -37,14 +37,14 @@ export default function TeamGrid(props: TeamGridProps) {
 
           {/* Graduation Year (Red) */}
           {member.year && (
-            <span className="text-red-500 font-medium text-sm mt-0.5">
+            <span className="text-[#b32424] font-medium text-sm mt-0.5">
               {member.year}
             </span>
           )}
 
           {/* Role / Title (Red) */}
           {member.role && (
-            <span className="text-red-500 font-medium text-xs leading-tight mt-1 max-w-[140px]">
+            <span className="text-[#b32424] font-medium text-xs leading-tight mt-1 max-w-[140px]">
               {member.role}
             </span>
           )}
