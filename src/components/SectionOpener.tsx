@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface OpeningBanner {
+interface OpeningBannerProps {
   title?: string;
   backgroundImageSrc?: string;
 }
@@ -8,7 +8,7 @@ interface OpeningBanner {
 export default function OpeningBanner({
   title,
   backgroundImageSrc,
-}: HeroSectionProps) {
+}: OpeningBannerProps) {
   return (
     
     <section className="relative w-full min-h-[75dvh] flex flex-col justify-center items-center text-center px-4 overflow-hidden">
