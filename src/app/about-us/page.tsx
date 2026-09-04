@@ -33,16 +33,15 @@ export default function Home() {
             <TextSection title='Meet Our Team'/>
             <TeamGrid
   members={[
-    { name: 'Kevin L', imageSrc: '/elements/blankface.png', role: 'Mentor' },
-    { name: 'Beth S', imageSrc: '/elements/blankface.png', role: 'Advisor'},
-    { name: 'Zimeng Z', imageSrc: '/elements/blankface.png', year: "'27" },
-    { name: 'Isabella Y', imageSrc: '/elements/blankface.png', year: "'27"},
-    { name: 'Matthew C', imageSrc: '/elements/blankface.png', year: "'27"},
-    { name: 'Ksenia J', imageSrc: '/elements/blankface.png', year: "'27"},
-    { name: 'Collin L', imageSrc: '/elements/blankface.png', year: "'28"},
-    { name: 'Anthony M', imageSrc: '/elements/blankface.png', year: "'28"},
-    { name: 'Arjun P', imageSrc: '/elements/blankface.png', year: "'28"},
-    { name: 'TBD', imageSrc: '/elements/blankface.png', year: "'xx"},
+    { name: 'Beth S', imageSrc: '/elements/blankface.svg', role: 'Advisor'},
+    { name: 'Zimeng Z', imageSrc: '/elements/blankface.svg', year: "'27" },
+    { name: 'Isabella Y', imageSrc: '/elements/blankface.svg', year: "'27"},
+    { name: 'Matthew C', imageSrc: '/elements/blankface.svg', year: "'27"},
+    { name: 'Ksenia J', imageSrc: '/elements/blankface.svg', year: "'27"},
+    { name: 'Ashwin G', imageSrc: '/elements/blankface.svg', year: "'27"},
+    { name: 'Anthony M', imageSrc: '/elements/blankface.svg', year: "'28"},
+    { name: 'Arjun P', imageSrc: '/elements/blankface.svg', year: "'28"},
+    { name: 'Paul K', imageSrc: '/elements/blankface.svg', year: "'29"},
   ]}
 />
           </SlideIn>

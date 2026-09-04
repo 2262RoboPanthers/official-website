@@ -31,7 +31,7 @@ export default function TeamGrid(props: TeamGridProps) {
           </div>
 
           {/* Member Name (Light Grey / Off-White) */}
-          <h3 className="text-gray-200 font-semibold text-base leading-snug break-words max-w-full">
+          <h3 className="text-[#ebebeb] font-semibold text-base leading-snug break-words max-w-full">
             {member.name}
           </h3>
 
