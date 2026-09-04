@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import SlideIn from '@/components/SlideIn';
-import OpeningBanner from '@/components/SectionOpener.tsx'
+import OpeningBanner from '@/components/SectionOpener'
 
 export default function Home() {
   return (
