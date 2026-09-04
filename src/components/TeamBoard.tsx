@@ -1,10 +1,10 @@
 import React from 'react';
 
-export interface TeamMember {
-  name: string;
-  imageSrc: string;
-  year?: string; // e.g., "'26"
-  role?: string; // e.g., "Mentor", "Electronics Captain"
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  disabled?: boolean;
 }
 
 interface TeamGridProps {

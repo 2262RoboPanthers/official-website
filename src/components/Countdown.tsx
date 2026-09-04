@@ -63,7 +63,7 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[50vh] flex items-center justify-center overflow-hidden py-12">
+    <div className="relative left-1/2 -translate-x-1/2 w-screen max-w-none min-h-[50vh] flex items-center justify-center overflow-hidden py-12">
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
         style={{ backgroundImage: "url('/countdown/background.jpg')" }}
