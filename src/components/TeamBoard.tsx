@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface Props {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-  disabled?: boolean;
+interface TeamMember {
+  name: string;
+  imageSrc?: string;
+  role?: string;
+  year?: string;
 }
 
 interface TeamGridProps {

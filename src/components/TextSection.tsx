@@ -2,8 +2,8 @@ import React, { ReactNode } from 'react';
 
 interface TextProps {
   title: string;
-  padup: boolean;
-  paddown: boolean;
+  padup?: boolean;
+  paddown?: boolean;
   children?: ReactNode;
 }
 

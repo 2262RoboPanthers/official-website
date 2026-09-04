@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SlideIn from '@/components/SlideIn';
 import OpeningBanner from '@/components/SectionOpener'
-import TeamGrid, {TeamMember} from '@/components/TeamBoard'
+import TeamGrid from '@/components/TeamBoard'
 import TextSection from '@/components/TextSection'
 
 export default function Home() {
