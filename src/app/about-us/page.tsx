@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SlideIn from '@/components/SlideIn';
 import OpeningBanner from '@/components/SectionOpener'
+import TeamGrid, {TeamMember} from '@/components/TeamBoard'
 
 export default function Home() {
   return (
@@ -53,6 +54,40 @@ export default function Home() {
             <p className="text-[var(--light-gray)] text-base sm:text-lg md:text-xl leading-loose text-left font-['Raleway'] w-full">
               We believe in the importance of inspiring our students and teaching them essential skills that they can use throughout their lives. We promote exceptional qualities and mannerisms, such as the ability to have a <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">competitive spirit</em> while demonstrating <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">good sportsmanship</em> and the importance of <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">equality and acceptance</em>, especially in scientific fields of work. In addition, we teach our members about <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">design, engineering, fabrication, and programming</em> as well as life skills such as <em className="text-[var(--red)] font-bold not-italic drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)]">leadership, teamwork, and time management</em> through this long-term project.
             </p>
+          </SlideIn>
+
+          <SlideIn direction="up" className="flex flex-col gap-8 w-full">
+            <div className="flex items-center justify-start gap-4 sm:gap-6 w-full">
+              <div className="w-16 sm:w-20 md:w-24 min-w-[60px] flex items-center pt-16">
+                <img 
+                  src="/elements/arrows.svg" 
+                  className="w-full h-auto drop-shadow-[0_0_0.2vw_rgba(102,102,102,0.5)]" 
+                  alt="arrows" 
+                />
+              </div>
+              
+              <div className="relative flex-1 pt-16">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide italic font-['Roadrunners'] bg-gradient-to-r from-[var(--red-fade)] to-[var(--red)] bg-clip-text text-transparent drop-shadow-[0_0_0.5vw_rgba(179,36,36,0.5)] pb-2 pr-4 inline-block">
+                  Meet Our Team
+                </h2>
+                <div className="w-full h-[3px] bg-[var(--medium-gray)]" />
+              </div>
+            </div>
+            
+            <TeamGrid
+  members={[
+    { name: 'Kevin L', imageSrc: '/elements/blankface.png', role: 'Mentor' },
+    { name: 'Beth S', imageSrc: '/elements/blankface.png', role: 'Advisor'},
+    { name: 'Zimeng Z', imageSrc: '/elements/blankface.png', year: "'27" },
+    { name: 'Isabella Y', imageSrc: '/elements/blankface.png', year: "'27"},
+    { name: 'Matthew C', imageSrc: '/elements/blankface.png', year: "'27"},
+    { name: 'Ksenia J', imageSrc: '/elements/blankface.png', year: "'27"},
+    { name: 'Collin L', imageSrc: '/elements/blankface.png', year: "'28"},
+    { name: 'Anthony M', imageSrc: '/elements/blankface.png', year: "'28"},
+    { name: 'Arjun P', imageSrc: '/elements/blankface.png', year: "'28"},
+    { name: 'TBD', imageSrc: '/elements/blankface.png', year: "'xx"},
+  ]}
+/>
           </SlideIn>
         </div>
         
