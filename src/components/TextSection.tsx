@@ -39,7 +39,7 @@ export default function TextSection({ title, padup=false, paddown=true, children
 
   const arrowstyle = padup ? arrowbase+" pt-16" : arrowbase; // oppan arrow style!
   const headerstyle = padup ? headerbase+" pt-16" : headerbase;
-  const textstyle = paddown ? textbase+" pd-16" : textbase;
+  const textstyle = paddown ? textbase+" pb-16" : textbase;
   return (
     <>
       <div className="flex items-center justify-start gap-4 sm:gap-6 w-full">
