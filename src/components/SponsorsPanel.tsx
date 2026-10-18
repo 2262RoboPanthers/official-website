@@ -1,4 +1,3 @@
-import React from 'react';
 import TextSection from '@/components/TextSection';
 
 
@@ -8,15 +7,6 @@ export interface Sponsor {
   imageUrl: string;
 }
 
-export interface SponsorsPanelProps {
-  sponsors: Sponsor[];
-  heading: string;
-  /**
-   * Relative size indicator for sponsor tiers (e.g., 1 to 10).
-   * Maps to grid item target widths while maintaining responsiveness.
-   */
-  relativeWidth?: number;
-}
 
 /**
  * Returns grid column min-widths and container height classes based on relativeWidth.
@@ -25,39 +15,35 @@ const getTierSizing = (tier: number) => {
   if (tier <= 2) {
     return {
       grid: 'grid-cols-[repeat(auto-fit,minmax(100px,1fr))]',
-      height: 'h-20 md:h-24',
+      width: 'w-60 md:w-60',
     };
   }
   if (tier <= 4) {
     return {
       grid: 'grid-cols-[repeat(auto-fit,minmax(140px,1fr))]',
-      height: 'h-28 md:h-32',
+      width: 'w-76 md:w-70',
     };
   }
   if (tier <= 6) {
     return {
       grid: 'grid-cols-[repeat(auto-fit,minmax(180px,1fr))]',
-      height: 'h-36 md:h-44',
+      width: 'w-80 md:w-80',
     };
   }
   if (tier <= 8) {
     return {
       grid: 'grid-cols-[repeat(auto-fit,minmax(230px,1fr))]',
-      height: 'h-48 md:h-56',
+      width: 'w-90 md:w-100',
     };
   }
   return {
     grid: 'grid-cols-[repeat(auto-fit,minmax(280px,1fr))]',
-    height: 'h-60 md:h-72',
+    width: 'w-100 md:w-120',
   };
 };
 
-const SponsorsPanel: React.FC<SponsorsPanelProps> = ({
-  sponsors,
-  heading,
-  relativeWidth = 5,
-}) => {
-  const { grid, height } = getTierSizing(relativeWidth);
+export default function SponsorsPanel({sponsors, heading, relativeWidth = 5}:{sponsors: Sponsor[]; heading: string; relativeWidth?: number;}){
+  const { grid, width } = getTierSizing(relativeWidth);
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-8">
@@ -73,7 +59,7 @@ const SponsorsPanel: React.FC<SponsorsPanelProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title={sponsor.title}
-            className={`group flex items-center justify-center w-full ${height} p-4 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+            className={`group flex items-center justify-center  ${width} p-4 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           >
             <img
               src={sponsor.imageUrl}
@@ -88,5 +74,3 @@ const SponsorsPanel: React.FC<SponsorsPanelProps> = ({
     </section>
   );
 };
-
-export default React.memo(SponsorsPanel);

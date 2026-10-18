@@ -1,14 +1,4 @@
-import React from 'react';
-
-interface OpeningBannerProps {
-  title?: string;
-  backgroundImageSrc?: string;
-}
-
-export default function OpeningBanner({
-  title,
-  backgroundImageSrc,
-}: OpeningBannerProps) {
+export default function OpeningBanner({title, backgroundImageSrc,}: {title?: string; backgroundImageSrc?: string;}) {
   return (
     
     <section className="relative w-full min-h-[75dvh] flex flex-col justify-center items-center text-center px-4 overflow-hidden">

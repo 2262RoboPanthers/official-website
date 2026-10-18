@@ -1,9 +1,20 @@
 import SlideIn from '@/components/SlideIn';
 import OpeningBanner from '@/components/SectionOpener'
-import SponsorsPanel from '@/components/SponsorsPanel';
+import SponsorsPanel, {Sponsor} from '@/components/SponsorsPanel';
+
+
+/* title: string, link: string, imageUrl:string */
+const platinumSponsors: Sponsor[] = [
+];
 
 const goldSponsors: Sponsor[] = [
-  
+  {title: "BAE Systems", link:"https://www.baesystems.com/en", imageUrl:"/sponsors/BAES logo.png"}
+];
+
+const silverSponsors: Sponsor[] = [
+];
+
+const bronzeSponsors: Sponsor[] = [
 ];
 
 export default function Home() {
@@ -17,12 +28,35 @@ export default function Home() {
         </div>
         <SlideIn>
           <SponsorsPanel
-        heading="Gold Sponsors"
-        sponsors={goldSponsors}
+        heading="Platinum Sponsors"
+        sponsors={platinumSponsors}
         relativeWidth={10}
       />
         </SlideIn>
         
+        <SlideIn>
+          <SponsorsPanel
+        heading="Gold Sponsors"
+        sponsors={goldSponsors}
+        relativeWidth={7}
+      />
+        </SlideIn>
+
+        <SlideIn>
+          <SponsorsPanel
+        heading="Silver Sponsors"
+        sponsors={silverSponsors}
+        relativeWidth={4}
+      />
+        </SlideIn>
+
+        <SlideIn>
+          <SponsorsPanel
+        heading="Bronze Sponsors"
+        sponsors={bronzeSponsors}
+        relativeWidth={2}
+      />
+        </SlideIn>
       </section>
     </main>
   );

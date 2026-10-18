@@ -7,11 +7,8 @@ interface TeamMember {
   year?: string;
 }
 
-interface TeamGridProps {
-  members: TeamMember[];
-}
 
-export default function TeamGrid(props: TeamGridProps) {
+export default function TeamGrid(props: {members: TeamMember[];}) {
   const members = props.members;
   return (
     <div className="flex flex-wrap justify-center gap-x-6 gap-y-12 w-full">
