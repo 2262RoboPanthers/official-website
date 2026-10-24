@@ -46,6 +46,8 @@ export default function SponsorsPanel({sponsors, heading, relativeWidth = 5}:{sp
   const { grid, width } = getTierSizing(relativeWidth);
 
   return (
+    <>
+    <TextSection title="Our Team"></TextSection>
     <section className="w-full max-w-7xl mx-auto px-4 py-8">
       <TextSection title={heading} paddown={false} />
 
@@ -72,5 +74,5 @@ export default function SponsorsPanel({sponsors, heading, relativeWidth = 5}:{sp
         ))}
       </div>
     </section>
-  );
+  </>);
 };

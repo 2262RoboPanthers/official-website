@@ -24,9 +24,7 @@ export default function Home() {
 
       <section className="w-full py-16 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto flex flex-col gap-16">
         <div className="w-full">
-          {/* stuff goes here */}
-        </div>
-        <SlideIn>
+          <SlideIn>
           <SponsorsPanel
         heading="Platinum Sponsors"
         sponsors={platinumSponsors}
@@ -57,6 +55,8 @@ export default function Home() {
         relativeWidth={2}
       />
         </SlideIn>
+        </div>
+        
       </section>
     </main>
   );
