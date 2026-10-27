@@ -9,19 +9,19 @@ export default function QRBoard({heading, items}:{heading:string;items:GalleryIt
 
   return (
     //<div className="w-full flex justify-center">
-      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center w-full">
+      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center w-full gap-6">
         
         {items.map((item, index) => (
           <div 
             key={index} 
-            className="flex flex-col items-center w-full max-w-xs"
+            className="flex flex-col items-center "
           >
             {/* Image box with border matching exact width */}
-            <div className="w-full p-2 shadow-sm rounded-md box-border">
+            <div className="p-2 shadow-sm rounded-md box-border">
               <img 
                 src={item.src} 
                 alt={item.caption} 
-                className="w-full h-auto block rounded-sm"
+                className="w-auto h-48 sm:h-96 object-cover block rounded-sm"
               />
             </div>
 
